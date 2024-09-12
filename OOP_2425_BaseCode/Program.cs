@@ -15,11 +15,23 @@ namespace OOP_2425_BaseCode
 
             DisplayArray(list);
 
-            for (int x = 0; x < 100; x++)
-            {
-                list = AddToArray(list, rnd.Next(20));
-                DisplayArray(list);
-            }
+            //for (int x = 0; x < 100; x++)
+            //{
+            //    list = AddToArray(list, 1);
+            //    DisplayArray(list);
+            //}
+            list = AddToArray(list, 1);
+            list = AddToArray(list, 2);
+            list = AddToArray(list, 3);
+            list = AddToArray(list, 4);
+            list = AddToArray(list, 5);
+            list = AddToArray(list, 6);
+            list = AddToArray(list, 7);
+            DisplayArray(list);
+            Console.WriteLine(contains(list,5));
+            Console.WriteLine(find(list, 5));
+            DisplayArray(removeAt(list, 5));
+            DisplayArray(remove(list, 5));
 
             Console.ReadKey();
         }
@@ -56,5 +68,52 @@ namespace OOP_2425_BaseCode
 
             return newArray;
         }
+
+        static bool contains(int[] array, int value)
+        {
+            bool result = false;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == value)
+                {
+                    result = true;
+                    break;
+                }   
+            }
+            return result;
+        }
+
+        static int find(int[] array, int find)
+        {
+            int found = -1;
+            for (int i = 0; i < array.Length; i++)
+            {
+                if (array[i] == find)
+                {
+                    found = i;
+                    break;
+                }
+            }
+            return found;
+        }
+
+        static int[] removeAt(int[] array, int index)
+        {
+            int[] newArray = new int[array.Length - 1];
+            for (int i = 0; i < newArray.Length; i++)
+            {
+                if (i < index)
+                    newArray[i] = array[i];
+                else if (i >= index)
+                    newArray[i] = array[i+1];
+            }
+            return newArray;
+        }
+
+        static int[] remove(int[] array, int value)
+        {
+            return removeAt(array,find(array,value));
+        }
+
     }
 }
